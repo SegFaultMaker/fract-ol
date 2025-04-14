@@ -6,7 +6,7 @@
 /*   By: nasargsy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 11:28:58 by nasargsy          #+#    #+#             */
-/*   Updated: 2025/04/14 14:42:44 by nasargsy         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:12:22 by nasargsy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ static void	check_input(int argc, char **argv)
 			check_mandelbrot(argv[1]);
 		if (ft_strncmp(argv[1], "julia", 5) == 0)
 		{
+			if (ft_strlen(ft_strtrim(argv[1], " ")) != 5)
+				quit_with_error(ERROR_MSG);
 			while (ft_isspace(*(argv[2])))
 				++argv[2];
 			check_julia_input(argv[2]);
