@@ -6,7 +6,7 @@
 /*   By: nasargsy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 11:28:58 by nasargsy          #+#    #+#             */
-/*   Updated: 2025/04/14 16:12:22 by nasargsy         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:07:06 by nasargsy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	check_julia_input(char *argv)
 	while (argv[i] != '.' && argv[i])
 	{
 		if (!ft_isdigit(argv[i]))
-			quit_with_error(ERROR_MSG);
+			quit_with_error(NULL);
 		++i;
 	}
 	if (!argv[i] && ft_atod(argv) <= 2.0 && ft_atod(argv) >= -2.0)
@@ -31,13 +31,13 @@ static int	check_julia_input(char *argv)
 	while (argv[i] && !ft_isspace(argv[i]))
 	{
 		if (!ft_isdigit(argv[i]))
-			quit_with_error(ERROR_MSG);
+			quit_with_error(NULL);
 		++i;
 	}
 	while (ft_isspace(argv[i]) && argv[i])
 		i++;
 	if (argv[i] || ft_atod(argv) > 2.0 || ft_atod(argv) <= -2.0)
-		quit_with_error(ERROR_MSG);
+		quit_with_error(NULL);
 	return (1);
 }
 
@@ -49,14 +49,14 @@ static int	check_mandelbrot(char *argv)
 	while (ft_isspace(argv[i]) && argv[i])
 		++i;
 	if (argv[i])
-		quit_with_error(ERROR_MSG);
+		quit_with_error(NULL);
 	return (1);
 }
 
 static void	check_input(int argc, char **argv)
 {
 	if (argc == 1 || argc > 4)
-		quit_with_error(ERROR_MSG);
+		quit_with_error(NULL);
 	while (ft_isspace(*(argv[1])))
 		++argv[1];
 	if ((ft_strncmp(argv[1], "mandelbrot", 10) == 0
@@ -69,7 +69,7 @@ static void	check_input(int argc, char **argv)
 		if (ft_strncmp(argv[1], "julia", 5) == 0)
 		{
 			if (ft_strlen(ft_strtrim(argv[1], " ")) != 5)
-				quit_with_error(ERROR_MSG);
+				quit_with_error(NULL);
 			while (ft_isspace(*(argv[2])))
 				++argv[2];
 			check_julia_input(argv[2]);
@@ -79,7 +79,7 @@ static void	check_input(int argc, char **argv)
 		}
 	}
 	else
-		quit_with_error(ERROR_MSG);
+		quit_with_error(NULL);
 }
 
 static void	fractal_init(t_fractal	*fractal)

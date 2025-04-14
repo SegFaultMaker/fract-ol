@@ -6,7 +6,7 @@
 /*   By: nasargsy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 12:04:26 by nasargsy          #+#    #+#             */
-/*   Updated: 2025/04/07 15:24:08 by nasargsy         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:08:26 by nasargsy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 
 void	quit_with_error(char *error)
 {
-	ft_putstr_fd(error, 2);
+	if (error)
+		ft_putstr_fd(error, 2);
+	else
+	{
+		ft_putstr_fd("Usage:\n~./fractol mandelbrot\n", 2);
+		ft_putstr_fd("~./fractol julia <real> <i>\n", 2);
+		ft_putstr_fd("IMPORTANT: ", 2);
+		ft_putstr_fd("Parameters for Julia need to be from -2.0 to 2.0\n", 2);
+	}
 	exit(1);
 }
 
