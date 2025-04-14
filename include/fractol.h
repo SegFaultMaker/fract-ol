@@ -6,7 +6,7 @@
 /*   By: nasargsy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 11:29:04 by nasargsy          #+#    #+#             */
-/*   Updated: 2025/04/07 13:51:07 by nasargsy         ###   ########.fr       */
+/*   Updated: 2025/04/14 14:45:10 by nasargsy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 
-# define ERROR_MSG "Usage:\n~./fractol mandelbrot\n~./fractol julia <real> <i>\n"
+# define ERROR_MSG "Usage:\n~./fractol mandelbrot\n~./fractol julia <real> <i>\nIMPORTANT: Parameters for Julia need to be between -2.0 and 2.0\n"
 # define MAGENTA      0xFFFF00FF
 # define CYAN         0xFF00FFFF
 # define ORANGE       0xFFFF8000

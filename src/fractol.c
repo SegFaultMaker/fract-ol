@@ -6,7 +6,7 @@
 /*   By: nasargsy <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 11:28:58 by nasargsy          #+#    #+#             */
-/*   Updated: 2025/04/14 13:36:16 by nasargsy         ###   ########.fr       */
+/*   Updated: 2025/04/14 14:42:44 by nasargsy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,39 @@ static int	check_julia_input(char *argv)
 	int	i;
 
 	i = 0;
-	while (ft_isspace(argv[i]))
-		++i;
 	if (argv[i] == '-' || argv[i] == '+')
 		++i;
-	while (argv[i] != '.')
+	while (argv[i] != '.' && argv[i])
 	{
 		if (!ft_isdigit(argv[i]))
-			return (0);
+			quit_with_error(ERROR_MSG);
 		++i;
 	}
+	if (!argv[i] && ft_atod(argv) <= 2.0 && ft_atod(argv) >= -2.0)
+		return (1);
 	++i;
-	while (argv[i])
+	while (argv[i] && !ft_isspace(argv[i]))
 	{
 		if (!ft_isdigit(argv[i]))
-			return (0);
+			quit_with_error(ERROR_MSG);
 		++i;
 	}
 	while (ft_isspace(argv[i]) && argv[i])
 		i++;
-	if (ft_isalpha(argv[i]))
-		return (0);
+	if (argv[i] || ft_atod(argv) > 2.0 || ft_atod(argv) <= -2.0)
+		quit_with_error(ERROR_MSG);
+	return (1);
+}
+
+static int	check_mandelbrot(char *argv)
+{
+	int	i;
+
+	i = 10;
+	while (ft_isspace(argv[i]) && argv[i])
+		++i;
+	if (argv[i])
+		quit_with_error(ERROR_MSG);
 	return (1);
 }
 
@@ -45,17 +57,23 @@ static void	check_input(int argc, char **argv)
 {
 	if (argc == 1 || argc > 4)
 		quit_with_error(ERROR_MSG);
+	while (ft_isspace(*(argv[1])))
+		++argv[1];
 	if ((ft_strncmp(argv[1], "mandelbrot", 10) == 0
-			&& argc == 2 && ft_strlen(argv[1]) == 10)
+			&& argc == 2)
 		|| ((ft_strncmp(argv[1], "julia", 5) == 0)
-			&& argc == 4 && ft_strlen(argv[1]) == 5))
+			&& argc == 4))
 	{
+		if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
+			check_mandelbrot(argv[1]);
 		if (ft_strncmp(argv[1], "julia", 5) == 0)
 		{
-			if (!check_julia_input(argv[2]))
-				quit_with_error(ERROR_MSG);
-			else if (!check_julia_input(argv[3]))
-				quit_with_error(ERROR_MSG);
+			while (ft_isspace(*(argv[2])))
+				++argv[2];
+			check_julia_input(argv[2]);
+			while (ft_isspace(*(argv[3])))
+				++argv[3];
+			check_julia_input(argv[3]);
 		}
 	}
 	else
